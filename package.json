@@ -2,7 +2,7 @@
   "name": "root-cause-analyzer-metrics",
   "version": "0.1.0",
   "bin": {
-    "root-cause-analyzer-metrics": "bin/root-cause-analyzer-metrics.js"
+    "root-cause-analyzer-metrics": "bin/root-cause-analyzer-metrics.ts"
   },
   "scripts": {
     "build": "tsc",

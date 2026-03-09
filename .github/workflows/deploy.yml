@@ -35,7 +35,7 @@ jobs:
         aws-region: us-east-1
 
     - name: CDK Synth
-      run: npx cdk synth
+      run: npx ts-node --prefer-ts-exts bin/root-cause-analyzer-metrics.ts
 
     - name: CDK Deploy
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
