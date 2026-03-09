@@ -1,5 +1,5 @@
 {
-  "app": "npx ts-node --prefer-ts-exts bin/lambda-practice.ts",
+  "app": "npx ts-node --prefer-ts-exts bin/root-cause-analyzer-metrics.ts",
   "watch": {
     "include": [
       "**"
