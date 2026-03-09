@@ -1,8 +1,8 @@
 {
-  "name": "lambda-practice",
+  "name": "root-cause-analyzer-metrics",
   "version": "0.1.0",
   "bin": {
-    "lambda-practice": "bin/lambda-practice.js"
+    "root-cause-analyzer-metrics": "bin/root-cause-analyzer-metrics.js"
   },
   "scripts": {
     "build": "tsc",
@@ -13,14 +13,16 @@
   "devDependencies": {
     "@types/jest": "^30",
     "@types/node": "^24.10.1",
+    "aws-cdk": "2.1110.0",
     "jest": "^30",
     "ts-jest": "^29",
-    "aws-cdk": "2.1110.0",
     "ts-node": "^10.9.2",
     "typescript": "~5.9.3"
   },
   "dependencies": {
+    "@types/aws-lambda": "^8.10.161",
     "aws-cdk-lib": "^2.241.0",
+    "aws-sdk": "^2.1693.0",
     "constructs": "^10.5.0"
   }
 }

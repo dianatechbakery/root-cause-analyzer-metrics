@@ -1,9 +1,9 @@
 #!/usr/bin/env node
-import * as cdk from 'aws-cdk-lib/core';
-import { LambdaPracticeStack } from '../lib/lambda-practice-stack';
+import * as cdk from 'aws-cdk-lib';
+import { RootCauseAnalyzerMetricsStack } from '../lib/root-cause-analyzer-metrics-stack';
 
 const app = new cdk.App();
-new LambdaPracticeStack(app, 'LambdaPracticeStack', {
+new RootCauseAnalyzerMetricsStack(app, 'RootCauseAnalyzerMetricsStack', {
   /* If you don't specify 'env', this stack will be environment-agnostic.
    * Account/Region-dependent features and context lookups will not work,
    * but a single synthesized template can be deployed anywhere. */
