@@ -78,7 +78,7 @@ export class RootCauseAnalyzerMetricsStack extends cdk.Stack {
 
     // Throttling at API level
     const deployment = new apigateway.Deployment(this, 'Deployment', { api });
-    const stage = new apigateway.Stage(this, 'Stage', {
+    const stage = new apigateway.Stage(this, 'StageUnique', {
       deployment,
       stageName: 'prod',
       throttlingRateLimit: 10, // requests per second
