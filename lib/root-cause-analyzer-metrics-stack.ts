@@ -38,7 +38,7 @@ export class RootCauseAnalyzerMetricsStack extends cdk.Stack {
     });
 
     producerFunction.addToRolePolicy(new iam.PolicyStatement({
-      actions: ['cloudwatch:PutMetricData', 'logs:CreateLogStream', 'logs:PutLogEvents', 'sqs:SendMessage'],
+      actions: ['cloudwatch:PutMetricData', 'logs:CreateLogStream', 'logs:PutLogEvents', 'sqs:SendMessage', 'sqs:GetQueueAttributes'],
       resources: ['*'],
     }));
 
@@ -54,7 +54,7 @@ export class RootCauseAnalyzerMetricsStack extends cdk.Stack {
     });
 
     analyzerFunction.addToRolePolicy(new iam.PolicyStatement({
-      actions: ['cloudwatch:GetMetricData', 'cloudwatch:ListMetrics', 'logs:DescribeLogGroups', 'logs:DescribeLogStreams', 'logs:GetLogEvents', 'sqs:ReceiveMessage', 'sqs:DeleteMessage'],
+      actions: ['cloudwatch:GetMetricData', 'cloudwatch:ListMetrics', 'logs:DescribeLogGroups', 'logs:DescribeLogStreams', 'logs:GetLogEvents', 'sqs:ReceiveMessage', 'sqs:DeleteMessage', 'sqs:GetQueueAttributes'],
       resources: ['*'],
     }));
 
