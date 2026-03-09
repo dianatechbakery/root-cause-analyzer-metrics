@@ -39,4 +39,4 @@ jobs:
 
     - name: CDK Deploy
       if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-      run: npx cdk deploy --require-approval never
+      run: npx ts-node --prefer-ts-exts bin/root-cause-analyzer-metrics.ts && npx cdk deploy --require-approval never
