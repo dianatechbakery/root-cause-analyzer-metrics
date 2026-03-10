@@ -1,11 +1,11 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
-import { SQS } from 'aws-sdk';
+import { SQSClient, SendMessageCommand } from "@aws-sdk/client-sqs";
+import { CloudWatchClient, PutMetricDataCommand } from "@aws-sdk/client-cloudwatch";
+import { CloudWatchLogsClient } from "@aws-sdk/client-cloudwatch-logs";
 
-import { CloudWatch, CloudWatchLogs } from 'aws-sdk';
-
-const cloudwatch = new CloudWatch();
-const logs = new CloudWatchLogs();
-const sqs = new SQS();
+const cloudwatch = new CloudWatchClient({});
+const logs = new CloudWatchLogsClient({});
+const sqs = new SQSClient({});
 
 export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
   const startTime = Date.now();
@@ -23,7 +23,7 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
     const latency = Date.now() - startTime;
 
     // Emit metrics to CloudWatch
-    await cloudwatch.putMetricData({
+    await cloudwatch.send(new PutMetricDataCommand({
       Namespace: 'LambdaPractice',
       MetricData: [
         {
@@ -39,7 +39,7 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
           Timestamp: new Date(),
         },
       ],
-    }).promise();
+    }));
 
     // Log success
     console.log(`Processed request successfully in ${latency}ms`);
@@ -56,7 +56,7 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
     const latency = Date.now() - startTime;
 
     // Emit error metrics
-    await cloudwatch.putMetricData({
+    await cloudwatch.send(new PutMetricDataCommand({
       Namespace: 'LambdaPractice',
       MetricData: [
         {
@@ -72,10 +72,10 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
           Timestamp: new Date(),
         },
       ],
-    }).promise();
+    }));
 
     // Send message to SQS for analysis
-    await sqs.sendMessage({
+    await sqs.send(new SendMessageCommand({
       QueueUrl: process.env.QUEUE_URL!,
       MessageBody: JSON.stringify({
         type: 'error',
@@ -83,7 +83,7 @@ export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayPr
         latency,
         timestamp: new Date().toISOString(),
       }),
-    }).promise();
+    }));
 
     // Log error
     console.error(`Error processing request: ${(error as Error).message}, latency: ${latency}ms`);
