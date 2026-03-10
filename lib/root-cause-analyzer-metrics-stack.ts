@@ -80,7 +80,7 @@ export class RootCauseAnalyzerMetricsStack extends cdk.Stack {
     const deployment = new apigateway.Deployment(this, 'DeploymentUnique', { api });
     const stage = new apigateway.Stage(this, 'StageUniqueProd', {
       deployment,
-      stageName: 'prod',
+      stageName: 'prod-unique',
       throttlingRateLimit: 10, // requests per second
       throttlingBurstLimit: 20,
     });
