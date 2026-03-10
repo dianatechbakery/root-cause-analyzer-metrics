@@ -1,9 +1,11 @@
 import { APIGatewayProxyEvent, APIGatewayProxyResult } from 'aws-lambda';
-import * as AWS from 'aws-sdk';
+import { SQS } from 'aws-sdk';
 
-const cloudwatch = new AWS.CloudWatch();
-const logs = new AWS.CloudWatchLogs();
-const sqs = new AWS.SQS();
+import { CloudWatch, CloudWatchLogs } from 'aws-sdk';
+
+const cloudwatch = new CloudWatch();
+const logs = new CloudWatchLogs();
+const sqs = new SQS();
 
 export const handler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
   const startTime = Date.now();
