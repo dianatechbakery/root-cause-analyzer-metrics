@@ -16,8 +16,11 @@
     "aws-cdk": "2.1110.0",
     "jest": "^30",
     "ts-jest": "^29",
+    "ts-loader": "^9.5.4",
     "ts-node": "^10.9.2",
-    "typescript": "~5.9.3"
+    "typescript": "~5.9.3",
+    "webpack": "^5.105.4",
+    "webpack-cli": "^6.0.1"
   },
   "dependencies": {
     "@types/aws-lambda": "^8.10.161",
